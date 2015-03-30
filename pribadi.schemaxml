@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">pwi</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="article" view="standard">
+<left>356</left>
+<top>121</top>
+<width>196</width>
+<height>206</height>
+<sql_create_table>CREATE TABLE `article` (
+  `id_article` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(50) DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `isi` text,
+  `id_category` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_article`),
+  KEY `article_ibfk_2` (`id_user`),
+  KEY `article_ibfk_1` (`id_category`),
+  CONSTRAINT `article_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `article_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="category" view="standard">
+<left>65</left>
+<top>37</top>
+<width>227</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `category` (
+  `id_category` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(50) DEFAULT NULL,
+  `desc_category` text,
+  PRIMARY KEY (`id_category`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tb_user" view="standard">
+<left>610</left>
+<top>65</top>
+<width>208</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `tb_user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_user` varchar(50) DEFAULT NULL,
+  `email_user` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `last_login` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
